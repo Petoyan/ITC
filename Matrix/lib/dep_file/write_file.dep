@@ -1,0 +1,2 @@
+write_file.dep write_file.o: write_file.cpp ../hpp_file/matrix.hpp \
+ ../hpp_file/write_file.hpp ../hpp_file/../hpp_file/matrix.hpp
