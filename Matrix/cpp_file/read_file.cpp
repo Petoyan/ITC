@@ -46,7 +46,7 @@ FileReader::~FileReader()
 	{
 		return m_column;
 	}
-	bool FileReader::readmatrix(Matrix &a)
+	bool FileReader::readmatrix(Matrix& a)
 	{
 		float x;
 		char c;

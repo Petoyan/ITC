@@ -1,0 +1,6 @@
+main_gauss.dep main_gauss.o: main_gauss.cpp ../hpp_file/matrix.hpp \
+ ../hpp_file/matrix_func.hpp ../hpp_file/../hpp_file/matrix.hpp \
+ ../hpp_file/../hpp_file/read_file.hpp \
+ ../hpp_file/../hpp_file/../hpp_file/matrix.hpp \
+ ../hpp_file/../hpp_file/write_file.hpp ../hpp_file/read_file.hpp \
+ ../hpp_file/write_file.hpp

@@ -12,8 +12,8 @@ int main()
 	std::cout << " Enter Epsilon" << "\n";
 	std::cout << "eps = ";
 	std::cin >> eps ;    
-        FileReader ra("./cpp_file/txt_files/a.txt"), rb("./cpp_file/txt_files/b.txt");
-        FileWriter wc("./cpp_file/txt_files/gauss_seidel.txt");
+        FileReader ra("./txt_files/a.txt"), rb("./txt_files/b.txt");
+        FileWriter wc("./txt_files/gauss_seidel.txt");
 	M = ra.getnumrow();
 	N = rb.getnumcolumn();
         Matrix a(M,M), b(M,N), x(M,N);

@@ -5,13 +5,11 @@ OBJ=$(patsubst %.cpp,%.o , $(SRC))
 DEPS:=$(patsubst %.cpp,%.dep, $(SRC))
 OUT = $(patsubst %.cpp,%.out, $(SRC))
 Lib = -lmatrix
-
 all:$(OUT)
 
 %.out:%.o 
 	@echo Linking
-	@g++ $<  $(Lib) -L./$(LIB_PATH) -I./$(HPP_PATH) -o $@ 
-
+	@g++ $< $(Lib) -L./$(LIB_PATH) -I./$(HPP_PATH) -o $@
 %.o:%.cpp
 	@echo CPP TO OBJ
 	@g++ $<  -I./$(HPP_PATH) -c -o $@

@@ -1,0 +1,7 @@
+gauss_seidel_integration_test.dep gauss_seidel_integration_test.o: \
+ gauss_seidel_integration_test.cpp ../hpp_file/matrix.hpp \
+ ../hpp_file/matrix_func.hpp ../hpp_file/../hpp_file/matrix.hpp \
+ ../hpp_file/../hpp_file/read_file.hpp \
+ ../hpp_file/../hpp_file/../hpp_file/matrix.hpp \
+ ../hpp_file/../hpp_file/write_file.hpp ../hpp_file/read_file.hpp \
+ ../hpp_file/write_file.hpp

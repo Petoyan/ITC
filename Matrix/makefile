@@ -1,7 +1,9 @@
 MAKE := make -r
-PROJECTS := lib cpp_file test
+PROJECTS := cpp_file out_file test
+
 
 all:$(PROJECTS)
+
 
 $(PROJECTS):
 	$(MAKE) -C $@

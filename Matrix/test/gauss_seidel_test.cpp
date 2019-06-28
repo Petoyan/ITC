@@ -1,72 +1,59 @@
 #include <iostream>
+#include <cassert>
 #include "matrix.hpp"
 #include "matrix_func.hpp"
 #include "read_file.hpp"
 #include "write_file.hpp"
 
-void beforAction(Matrix* a1, Matrix* a2) {
+/*void beforAction(Matrix* a1, Matrix* a2, Matrix* a3) {
 
 	unsigned int M=0;
 	unsigned int N=0;
 	float eps;
-	std::cout << " Enter Epsilon" << "\n";
-	std::cout << "eps = ";
-	std::cin >> eps ;    
-        FileReader ra("./test/txt_files/a.txt");
-	FileReader rb("./test/txt_files/gauss_seidel.txt");
-        FileWriter wc("./test/txt_files/gauss_seidel_test.txt");
+	
+        FileReader ra("./txt_files/a.txt");
+	FileReader rb("./txt_files/b.txt");
+	FileReader rx("./txt_files/gauss_seidel.txt");
+        FileWriter wc("./txt_files/gauss_seidel_test.txt");
 	M = ra.getnumrow();
 	N = rb.getnumcolumn();
 
-        Matrix a(M,M);
 	a1 = new Matrix(M,M);
 	a2 = new Matrix(M,N);
+	a3 = new Matrix(M,N);
 
         ra.readmatrix(a1);
-       	rb.readmatrix(a2);
+       	rx.readmatrix(a2);
+	rb.readmatrix(a3);
 }
 
 void afterAction(Matrix* a1, Matrix* a2) {
 	delete a1;
 	delete a2;
+	delete a3;
 }
 
-void test1(const Matrix& t1, const Matrix& t2, Matrix& y)
+void test1(float eps)
 {
 	Matrix* a;
+	Matrix* b;
 	Matrix* x;
-	beforAction(a, b);
+	beforAction();
 
-	Matrix r;
-	Mult_Matrixt(a, x, r);
-	assert(r == gout, "PASSSSSS")
+	Matrix r(x.getnumofRows(),x.getnumofColumns());
+	Mult_Matrix(a, x, r);
+	assert(Matrix_Equal(r,b,eps));
 
 	afterAction(a, b);
-//	Mult_Matrixt(t1, t2, y);
 }
-
+*/
 int main()
 {
-//unsigned int M=0;
-//unsigned int N=0;
-//float eps;
-//std::cout << " Enter Epsilon" << "\n";
-//std::cout << "eps = ";
-//std::cin >> eps ;    
-//FileReader ra("./test/txt_files/a.txt"), rb("./test/txt_files/gauss_seidel.txt");
-//FileWriter wc("./test/txt_files/gauss_seidel_test.txt");
-//M = ra.getnumrow();
-//N = rb.getnumcolumn();
-//
-//Matrix a(M,M);
-//Matrix x(M,N);
-//Matrix b_g_s(M,N);
-//while(ra.readmatrix(a) && rb.readmatrix(x))
-//{
-//        test1(a,x,b_g_s);
-//	Mult_Matrix(a, x, b_g_s);
-//        wc.WriteMatrix(b_g_s);
-//}
+	float eps;
+	std::cout << " Enter Epsilon" << "\n";
+	std::cout << "eps = ";
+	std::cin >> eps ;    
+	//test1(eps);
 
 	return 0;
 }

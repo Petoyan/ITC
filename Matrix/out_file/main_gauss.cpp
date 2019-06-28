@@ -8,18 +8,14 @@ int main()
 {
 	unsigned int M=0;
 	unsigned int N=0;
-	float  eps;
-	std::cout << " Enter Epsilon" << "\n";
-	std::cout << "eps = ";
-	std::cin >> eps ;    
         FileReader ra("./txt_files/a.txt"), rb("./txt_files/b.txt");
-        FileWriter wc("./txt_files/jakob.txt");
+        FileWriter wc("./txt_files/gauss.txt");
 	M = ra.getnumrow();
-	N = rb.getnumcolumn();
-        Matrix a(M,M), b(M,N), x(M,N);
+	N = ra.getnumcolumn();
+        Matrix a(M,N), b(M,1), x(N,1);
         while(ra.readmatrix(a) && rb.readmatrix(b))
         {
-                Jakob_Method(a,b,x,eps);
+                Gauss_Method(a,b,x);
                 wc.WriteMatrix(x);
         }
 

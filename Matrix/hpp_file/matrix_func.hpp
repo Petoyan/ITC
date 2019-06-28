@@ -10,5 +10,7 @@
 void Gauss_Seidel_Method(const Matrix&, const Matrix&, Matrix& , float);
 void Jakob_Method(const Matrix&, const Matrix&, Matrix&, float);
 void Mult_Matrix(const Matrix& , const Matrix& , Matrix& );
+bool Matrix_Equal(const Matrix& , const Matrix& , float );
+void Gauss_Method( Matrix& , Matrix& , Matrix& );
 #endif
 
