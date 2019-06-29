@@ -3,8 +3,12 @@
 #echo generator
 #echo enter size of matrix
 #./generator/generator.exe
-echo solved equation 
+echo "########################################"
+echo "########### solved equation ############"
+echo "########################################"
 ./matrix_function/run.exe
-echo testing
-echo result write in out_test.txt
+echo "############## testing #################"
+echo "########################################"
+echo "##### result write in out_test.txt #####"
+echo "########################################"
 ./test/test.exe
