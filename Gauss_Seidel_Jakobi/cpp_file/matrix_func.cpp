@@ -23,9 +23,28 @@ bool converge( const Matrix& x, const Matrix& y , float eps)
 	return (sqrt(norm) > e);
 }
 
-void Gauss_Seidel_Method(const Matrix& a, const Matrix& b, Matrix& x, float eps)
+bool chack(const Matrix& a)
 {
-	if(chack_matrix(a)){
+	for (int i = 0; i < a.getnumofRows(); ++i)
+	{
+		float x=0;
+		for (int j = 0; j < a.getnumofColumns(); ++j)
+		{
+			x += a(i,j);
+		}
+		if(std::fabs(a(i,i)) < std::fabs(x-a(i,i)))
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+
+bool Gauss_Seidel_Method(const Matrix& a, const Matrix& b, Matrix& x, float eps)
+{
+	if(chack_matrix(a) && chack(a))
+	{
 	Matrix y(x.getnumofRows(),x.getnumofColumns());
 	int n = a.getnumofRows();
 	do
@@ -44,26 +63,10 @@ void Gauss_Seidel_Method(const Matrix& a, const Matrix& b, Matrix& x, float eps)
 			x(i) = (b(i) - var) / a(i,i);
 		}
 	}while(converge(x,y,eps));
-	}else{
-		std::cout<< "this matrix can not solved" << "\n";
-	}
-}
-
-bool chack(const Matrix& a)
-{
-	for (int i = 0; i < a.getnumofRows(); ++i)
-	{
-		float x=0;
-		for (int j = 0; j < a.getnumofColumns(); ++j)
-		{
-			x += a(i,j);
-		}
-		if(std::fabs(a(i,i)) < std::fabs(x-a(i,i)))
-		{
-			return false;
-		}
-	}
 	return true;
+	}else{
+		return false;
+	}
 }
 
 void swap(Matrix& m, Matrix& b, int i)
@@ -146,7 +149,7 @@ void Gauss_Method(Matrix& m, Matrix& b, Matrix& x)
 	backward(m,b,x);
 }
 
-void Jakob_Method(const Matrix& a, const Matrix& b, Matrix& x, float eps)
+bool Jakob_Method(const Matrix& a, const Matrix& b, Matrix& x, float eps)
 {
 	if(chack_matrix(a) && chack(a)){
 		float norm;
@@ -168,11 +171,11 @@ void Jakob_Method(const Matrix& a, const Matrix& b, Matrix& x, float eps)
 				x(h) = y(h);
 			}
 		} while ( norm > eps );
+		return true;
 	}
 	else
 	{
-
-		std::cout << "this matrix can not solved " << "\n";
+		return false;
 	}
 }
 void Mult_Matrix(const Matrix& t1, const Matrix& t2, Matrix& y)

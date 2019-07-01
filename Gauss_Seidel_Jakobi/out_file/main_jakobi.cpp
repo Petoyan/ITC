@@ -9,6 +9,7 @@ int main()
 	unsigned int M=0;
 	unsigned int N=0;
 	float  eps;
+	int count = 0;
 	std::cout << " Enter Epsilon" << "\n";
 	std::cout << "eps = ";
 	std::cin >> eps ;    
@@ -19,9 +20,10 @@ int main()
         Matrix a(M,M), b(M,N), x(M,N);
         while(ra.readmatrix(a) && rb.readmatrix(b))
         {
-                Jakob_Method(a,b,x,eps);
+                if(!(Jakob_Method(a,b,x,eps)))
+			++count;
                 wc.WriteMatrix(x);
         }
-
+	std::cout << "digits unsolved equation = " << count << "\n"; 
 	return 0;
 }

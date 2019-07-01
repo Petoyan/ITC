@@ -9,31 +9,33 @@ private:
 	unsigned int size;
 	unsigned int capacity;
 public:
-	DynVector():size(16),capacity(0)
+	DynVector():size(0),capacity(16)
 	{
-		data = new T[size];
+		data = new T[capacity];
 	}
-	DynVector(unsigned int s):size(s),capacity(0)
+//	DynVector(unsigned int s):size(0),capacity(s)
+//	{
+//		data = new T[capacity];
+//	}
+	DynVector(const DynVector<T>& vec)
 	{
-		data = new T[size];
-	}
-	DynVector(const DynVector<T>& vec):size(vec.size),capacity(vec.capacity)
-	{
-		data = new T[size];
-		copyElements(vec.data, data, capacity);
+		size = vec.size;
+		capacity = vec.capacity;
+		data = new T[capacity];
+		copyElements(vec.data, data, size);
 	}
 	DynVector<T>& operator=(const DynVector<T>& vec)
 	{
-		T* temp = new T[vec.size];
-		copyElements(vec.data, temp, capacity);
+		T* temp = new T[capacity];
+		copyElements(vec.data, temp, size);
 		delete [] data;
 		data = temp;
 		return *this;
 
 	}
-	void copyElements(const T* from, const T* to, unsigned int capacity)
+	void copyElements(const T* from, const T* to, unsigned int size)
 	{
-		for(int i = 0; i < capacity; ++i)
+		for(int i = 0; i < size; ++i)
 		{
 			to[i] = from[i];
 		}
@@ -44,8 +46,8 @@ public:
 		{
 			reallocateMemory();
 		}
-		data[capacity] = val;
-		++capacity;
+		data[size] = val;
+		++size;
 	}
 	void insert(unsigned int index,T val)
 	{
@@ -53,26 +55,26 @@ public:
 		{
 			reallocateMemory();
 		}
-		for(int i = capacity; i >=index; --i)
+		for(int i = size; i >=index; --i)
 		{
 			data[i+1] = data [i];
 		}
 		data[index] = val;
-		++capacity;
+		++size;
 	}
 	void removeByIndex(unsigned int index)
 	{
-		for(int i = index; i < capacity; ++i)
+		for(int i = index; i < size; ++i)
 		{
 			data[i] = data[i+1];
 		}
-		--capacity;
+		--size;
 	}
 	void reallocateMemory()
 	{
-		size *=2;
+		capacity *=2;
 		T* const temp = new T[size];
-		for(int i = 0; i < capacity; ++i)
+		for(int i = 0; i < size; ++i)
 		{
 			temp[i] = data[i];
 		}
@@ -101,7 +103,7 @@ public:
 int main()
 {
 	DynVector<int>* vec = new DynVector<int>();
-	std::cout << "Size of vector = " << vec->getSize() << "\n";
+	std::cout << "Capasity of vector = " << vec->getCapacity() << "\n";
 	for(int i = 0; i < 20; ++i)
 	{
 		vec->push_back(i);
@@ -110,9 +112,10 @@ int main()
 	vec1 = vec;
 	vec1->removeByIndex(2);
 	vec1->insert(5,123);
-	for(int i = 0; i < vec1->getCapacity() ; ++i)
+	DynVector<int>* vec2 = vec1;
+	for(int i = 0; i < vec1->getSize() ; ++i)
 	{
-		std::cout << vec1->getElement(i)  << "\n";
+		std::cout << vec2->getElement(i)  << "\n";
 	}
 	std::cout << " Size of vector = "<< vec1->getSize() << "\n";
 	std::cout << "Capacity of vector = " << vec1->getCapacity() << "\n";

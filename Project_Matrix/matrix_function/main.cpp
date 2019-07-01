@@ -9,24 +9,20 @@ struct Matrix
 	int* m_array;
 	int m_row;
 	int m_col;
-
 	Matrix(const unsigned int M, const unsigned int N )
 	{
 		m_row = M;
 		m_col = N;
 		m_array = new int [M*N];
 	}
-
 	int getNumberofRows()const
 	{
 		return m_row;
 	}
-
 	int getNumberofColumns()const
 	{
 		return m_col;
 	}
-
 	int & operator()(const unsigned int i, const unsigned int j) const
 	{
 		return m_array[i * getNumberofColumns() + j];
@@ -75,7 +71,6 @@ struct FileReader
 		{
 			return false;
 		}
-
 	}
 	unsigned int matrix_rows_num()
 	{
@@ -139,7 +134,6 @@ bool ReadMatrix(const Matrix& m,FileReader& r)
 			}
 		}
 	}
-
 	}
 	else
 	{
@@ -177,9 +171,8 @@ void MultMatrix(const Matrix& t1,const Matrix& t2, Matrix& y)
 		}
 	}
 }
-
 	
- void  WriteMatrix(const Matrix& y,FileWriter& fw)
+void  WriteMatrix(const Matrix& y,FileWriter& fw)
 {
 	if(z==1)
 	{
@@ -228,7 +221,6 @@ void MatrixDimensions(unsigned int& M,unsigned int& N, unsigned int& K, FileRead
 	M = ra.matrix_rows_num();
 	N = ra.matrix_columns_num();
         K = rc.matrix_columns_num();	
-
 }
 
 int main()
